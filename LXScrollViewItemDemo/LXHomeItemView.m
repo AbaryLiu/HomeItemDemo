@@ -73,6 +73,7 @@ static NSString *const HomeItemCellID = @"HomeItemCellID";
     LXHomeItemCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:HomeItemCellID forIndexPath:indexPath];
     cell.titles = self.titles;
     cell.index = indexPath.item;
+    cell.delegate = self.delegate;
     return cell;
 }
 
@@ -141,7 +142,9 @@ static NSString *const HomeSubItemCellID = @"HomeSubItemCellID";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeItemView:didSelectItemAtSection:Index:)]) {
+        [self.delegate homeItemView:((LXHomeItemView *)self.superview.superview) didSelectItemAtSection:_index Index:indexPath.item];
+    }
 }
 @end
 

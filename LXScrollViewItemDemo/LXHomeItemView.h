@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol LXHomeItemViewDelegate <NSObject>
 
 @optional
-- (void)homeItemView:(LXHomeItemView *)itemView didSelectItemAtIndex:(NSInteger)index;
+- (void)homeItemView:(LXHomeItemView *)itemView didSelectItemAtSection:(NSInteger)section Index:(NSInteger)index;
 @end
 
 @interface LXHomeItemView : UIView
@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXHomeItemCell : UICollectionViewCell
 
+@property (nonatomic, weak) id<LXHomeItemViewDelegate> delegate;
 @property (nonatomic,strong)NSArray *titles;
 @property (nonatomic,assign)NSInteger index;
 

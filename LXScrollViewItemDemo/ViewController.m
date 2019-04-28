@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "LXHomeItemView.h"
 
-@interface ViewController ()
+@interface ViewController ()<LXHomeItemViewDelegate>
 
 @property (nonatomic,strong)NSArray *titles;
 @end
@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    LXHomeItemView *itemView = [LXHomeItemView itemViewWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 190) delegate:nil titles:self.titles];
+    LXHomeItemView *itemView = [LXHomeItemView itemViewWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 190) delegate:self titles:self.titles];
     [self.view addSubview:itemView];
 }
 
@@ -39,5 +39,11 @@
                     @{@"image":@"home_item2",@"title":@"其他"}]];
     }
     return _titles;
+}
+
+#pragma mark - LXHomeItemViewDelegate
+
+- (void)homeItemView:(LXHomeItemView *)itemView didSelectItemAtSection:(NSInteger)section Index:(NSInteger)index {
+    NSLog(@"第%zd组  第%zd个",section,index);
 }
 @end
